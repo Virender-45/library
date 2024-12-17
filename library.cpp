@@ -16,25 +16,28 @@ Validate actions like borrowing or returning to ensure books can't be borrowed i
 */
 
 #include <iostream>
+
 using namespace std;
 
-struct Book
+typedef struct Book
 {
     string title;
     string author;
     int isbn;
-};
-int n;
-void addBook(Book &b){
+} b;
+int n; // Global varable
+void addBook(Book &b)
+{
     cout << "Enter the title of book : ";
-    getline(cin, b.title);
+    cin >> b.title;
     cout << "Enter the Author of the book : ";
-    getline(cin, b.author);
+    cin >> b.author;
     cout << "Emter ISBN code : ";
     cin >> b.isbn;
 }
-void entryDisplay(){
-    cout << "<----------------What do you want to do ?---------------->" << endl;
+void entryDisplay()
+{
+    cout << "<----------------Chose an option?---------------->" << endl;
     cout << "(1) Add a new book." << endl;
     cout << "(2) Search for a book by title." << endl;
     cout << "(3) Display all books." << endl;
@@ -43,31 +46,69 @@ void entryDisplay(){
     cout << "(6) Exit the library." << endl;
     cin >> n;
 }
-void addBookFunc(){
-    Book b;
-    addBook(b);
-    cout << "Your book with title " << b.title << " added" << endl;
+void booksStored()
+{
+    b virender = {"rana","saab",76567};
+    b aman = {"dhiman","bhau",76427};
+    b abhay = {"chandel","brother",35845};
+
+    Book *bookshave = new Book[10];
+    bookshave[0] = {virender};
+    bookshave[1] = {aman};
+    bookshave[2] = {abhay};
+
+    cout << endl
+         << "We have following books in our library" << endl;
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "Book " << i + 1 << " : Title - " << bookshave[i].title << endl;
+    }
+
+    delete[] bookshave;
+}
+void bookSearch()
+{
+    string title;
+
+    cout << "Enter the title of book : ";
+    cin >> title;
+
+
+}
+
+void addBookFunc()
+{
+    Book newBook;
+    addBook(newBook);
+    cout << endl<< endl
+         << "Your book with title " << newBook.title << " added" << endl<< endl;
     entryDisplay();
 }
 
-int main(){
-    cout << "<----------------Welcome! To Our Library---------------->" << endl
+
+int main()
+{
+    cout << "<----------------Welcome! To My Library---------------->" << endl
          << endl;
     entryDisplay();
 
-    if (n == 1){
-        // Book b;
-        // addBook(b);
-        // cout << "Your book with title " << b.title << " added" << endl;
-        // entryDisplay();
+    if (n == 1)
+    {
         addBookFunc();
     }
-    else if (n == 6){
+    else if (n == 3)
+    {
+        booksStored();
+    }
+    else if (n == 6)
+    {
         cout << "Exiting!!!";
         return 0;
     }
-    else{
-        cout << "invalid Input";
+    else
+    {
+        cout << "invalid Input and Exiting!!";
+        return 0;
     }
 
     return 0;
