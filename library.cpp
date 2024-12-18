@@ -48,23 +48,21 @@ void entryDisplay()
 }
 void booksStored()
 {
-    b virender = {"rana","saab",76567};
-    b aman = {"dhiman","bhau",76427};
-    b abhay = {"chandel","brother",35845};
-
     Book *bookshave = new Book[10];
-    bookshave[0] = {virender};
-    bookshave[1] = {aman};
-    bookshave[2] = {abhay};
 
-    cout << endl
-         << "We have following books in our library" << endl;
-    for (int i = 0; i < 3; i++)
-    {
+    bookshave[0] = {"rana", "saab", 76567};
+    bookshave[1] = {"dhiman", "bhau", 76427};
+    bookshave[2] = {"chandel", "brother", 35845};
+
+    
+    cout << endl << "We have following books in our library" << endl;
+    for (int i = 0; i < 3; i++) {
         cout << "Book " << i + 1 << " : Title - " << bookshave[i].title << endl;
     }
 
     delete[] bookshave;
+
+
 }
 void bookSearch()
 {
@@ -72,19 +70,21 @@ void bookSearch()
 
     cout << "Enter the title of book : ";
     cin >> title;
-
-
+    
+   
+    
 }
 
 void addBookFunc()
 {
     Book newBook;
     addBook(newBook);
-    cout << endl<< endl
-         << "Your book with title " << newBook.title << " added" << endl<< endl;
+    cout << endl
+         << endl
+         << "Your book with title " << newBook.title << " added" << endl
+         << endl;
     entryDisplay();
 }
-
 
 int main()
 {
