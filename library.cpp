@@ -54,9 +54,10 @@ void booksStored()
     bookshave[1] = {"dhiman", "bhau", 76427};
     bookshave[2] = {"chandel", "brother", 35845};
 
-    
-    cout << endl << "We have following books in our library" << endl;
-    for (int i = 0; i < 3; i++) {
+    cout << endl
+         << "We have following books in our library" << endl;
+    for (int i = 0; i < 3; i++)
+    {
         cout << "Book " << i + 1 << " : Title - " << bookshave[i].title << endl;
     }
 
@@ -68,7 +69,6 @@ void bookSearch()
 
     cout << "Enter the title of book : ";
     cin >> title;
-    
 }
 
 void addBookFunc()
