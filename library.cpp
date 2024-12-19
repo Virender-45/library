@@ -61,8 +61,6 @@ void booksStored()
     }
 
     delete[] bookshave;
-
-
 }
 void bookSearch()
 {
@@ -70,8 +68,6 @@ void bookSearch()
 
     cout << "Enter the title of book : ";
     cin >> title;
-    
-   
     
 }
 
