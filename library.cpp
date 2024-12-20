@@ -16,6 +16,7 @@ Validate actions like borrowing or returning to ensure books can't be borrowed i
 */
 
 #include <iostream>
+#include<string>
 
 using namespace std;
 
@@ -26,14 +27,42 @@ typedef struct Book
     int isbn;
 } b;
 int n; // Global varable
-void addBook(Book &b)
+
+int main()
 {
-    cout << "Enter the title of book : ";
-    cin >> b.title;
-    cout << "Enter the Author of the book : ";
-    cin >> b.author;
-    cout << "Emter ISBN code : ";
-    cin >> b.isbn;
+    cout << "<----------------Welcome! To My Library---------------->" << endl
+         << endl;
+    entryDisplay();
+
+    switch (n)
+    {
+    case 1:
+        addBookFunc();
+        entryDisplay();
+        break;
+    case 2:
+        bookSearch();
+        entryDisplay();
+        break;
+    case 3:
+        booksStored();
+        entryDisplay();
+        break;
+    case 4:
+        // borrowBook();
+        break;
+    case 5:
+        // returBook();
+        break;
+    case 6:
+        return 0;
+
+    default:
+        cout << "Invalid Input! Exiting!!!" << endl;
+        break;
+    }
+
+    return 0;
 }
 void entryDisplay()
 {
@@ -45,6 +74,26 @@ void entryDisplay()
     cout << "(5) Return a book." << endl;
     cout << "(6) Exit the library." << endl;
     cin >> n;
+}
+
+void addBook(Book &b)
+{
+    cout << "Enter the title of book : ";
+    cin >> b.title;
+    cout << "Enter the Author of the book : ";
+    cin >> b.author;
+    cout << "Emter ISBN code : ";
+    cin >> b.isbn;
+}
+void addBookFunc()
+{
+    Book newBook;
+    addBook(newBook);
+    cout << endl
+         << endl
+         << "Your book with title " << newBook.title << " added" << endl
+         << endl;
+    entryDisplay();
 }
 void booksStored()
 {
@@ -69,43 +118,4 @@ void bookSearch()
 
     cout << "Enter the title of book : ";
     cin >> title;
-}
-
-void addBookFunc()
-{
-    Book newBook;
-    addBook(newBook);
-    cout << endl
-         << endl
-         << "Your book with title " << newBook.title << " added" << endl
-         << endl;
-    entryDisplay();
-}
-
-int main()
-{
-    cout << "<----------------Welcome! To My Library---------------->" << endl
-         << endl;
-    entryDisplay();
-
-    if (n == 1)
-    {
-        addBookFunc();
-    }
-    else if (n == 3)
-    {
-        booksStored();
-    }
-    else if (n == 6)
-    {
-        cout << "Exiting!!!";
-        return 0;
-    }
-    else
-    {
-        cout << "invalid Input and Exiting!!";
-        return 0;
-    }
-
-    return 0;
 }
