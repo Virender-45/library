@@ -1,22 +1,4 @@
-/*Question:
-The program should provide a menu with the following options:
-
-Add a new book.
-Search for a book by title.
-Display all books.
-Borrow a book (mark as unavailable).
-Return a book (mark as available).
-Exit the program.
-Use an array (or dynamic array) to store the books and allow the user to perform these operations interactively.
-Tips:
-Use a loop to keep displaying the menu until the user chooses to exit.
-Functions for each operation will make the program modular and organized.
-Use string comparisons for the search functionality.
-Validate actions like borrowing or returning to ensure books can't be borrowed if already unavailable or returned if already available.
-*/
-
 #include <iostream>
-#include<string>
 
 using namespace std;
 
@@ -26,7 +8,9 @@ typedef struct Book
     string author;
     int isbn;
 } b;
-int n; // Global varable
+// Global varables
+int n;
+Book *bookshave = new Book[10];
 
 int main()
 {
@@ -34,19 +18,20 @@ int main()
          << endl;
     entryDisplay();
 
+    bookshave[0] = {"rana", "saab", 76567};
+    bookshave[1] = {"dhiman", "bhau", 76427};
+    bookshave[2] = {"chandel", "brother", 35845};
+
     switch (n)
     {
     case 1:
         addBookFunc();
-        entryDisplay();
         break;
     case 2:
         bookSearch();
-        entryDisplay();
         break;
     case 3:
         booksStored();
-        entryDisplay();
         break;
     case 4:
         // borrowBook();
@@ -93,15 +78,10 @@ void addBookFunc()
          << endl
          << "Your book with title " << newBook.title << " added" << endl
          << endl;
-    entryDisplay();
+    return entryDisplay();
 }
 void booksStored()
 {
-    Book *bookshave = new Book[10];
-
-    bookshave[0] = {"rana", "saab", 76567};
-    bookshave[1] = {"dhiman", "bhau", 76427};
-    bookshave[2] = {"chandel", "brother", 35845};
 
     cout << endl
          << "We have following books in our library" << endl;
@@ -111,6 +91,7 @@ void booksStored()
     }
 
     delete[] bookshave;
+    return entryDisplay();
 }
 void bookSearch()
 {
@@ -118,4 +99,20 @@ void bookSearch()
 
     cout << "Enter the title of book : ";
     cin >> title;
+
+    bool found = false;
+    for (int i = 0; i < 3; i++)
+    {
+        if (bookshave[i].title == title)
+        {
+            cout << "The book with title : " << bookshave[i].title << " is found .";
+        }
+        else
+        {
+            cout << "Book not found ";
+            entryDisplay();
+        }
+    }
+
+    return entryDisplay();
 }
