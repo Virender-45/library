@@ -2,6 +2,12 @@
 
 using namespace std;
 
+void entryDisplay();
+void addBook(Book &b);
+void addBookFunc();
+void booksStored();
+void bookSearch();
+
 typedef struct Book
 {
     string title;
