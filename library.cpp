@@ -1,61 +1,86 @@
 #include <iostream>
+#include <string>
+#include <conio.h>
 
 using namespace std;
 
-void entryDisplay();
-void addBook(Book &b);
-void addBookFunc();
-void booksStored();
-void bookSearch();
-
-typedef struct Book
+class Library
 {
-    string title;
-    string author;
-    int isbn;
-} b;
-// Global varables
-int n;
-Book *bookshave = new Book[10];
 
-int main()
-{
-    cout << "<----------------Welcome! To My Library---------------->" << endl
-         << endl;
-    entryDisplay();
-
-    bookshave[0] = {"rana", "saab", 76567};
-    bookshave[1] = {"dhiman", "bhau", 76427};
-    bookshave[2] = {"chandel", "brother", 35845};
-
-    switch (n)
+public:
+    struct Book
     {
-    case 1:
-        addBookFunc();
-        break;
-    case 2:
-        bookSearch();
-        break;
-    case 3:
-        booksStored();
-        break;
-    case 4:
-        // borrowBook();
-        break;
-    case 5:
-        // returBook();
-        break;
-    case 6:
-        return 0;
+        string title;
+        string author;
+        int isbn;
+        bool isAvailable = 1;
+    };
+    Book *booksHave = new Book[100];
 
-    default:
-        cout << "Invalid Input! Exiting!!!" << endl;
-        break;
+    void displayMenu();
+    void addBook();
+    void displayBooks();
+    void bookSearch();
+};
+void Library::bookSearch()
+{
+    string t;
+    cout << "Enter the title of the book you are looking for : ";
+    cin >> t;   
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (booksHave[i].title == t)
+        {
+            cout << "Your book with name " << booksHave[i].title << " is found and available." << endl;
+        }
+        else
+        {
+            cout << "Book found but not available." << endl;
+        }
     }
-
-    return 0;
 }
-void entryDisplay()
+void Library::displayBooks()
+{
+    booksHave[0] = {"rana", "saab", 76567, 1};
+    booksHave[1] = {"dhiman", "bhau", 76427, 1};
+    booksHave[2] = {"chandel", "brother", 35845, 0};
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (booksHave[i].isAvailable == 1)
+        {
+            cout << "Book " << i + 1 << " with title " << booksHave[i].title << " is available. " << endl;
+        }
+        else
+        {
+            cout << "Book " << i + 1 << " with title " << booksHave[i].title << " is not available. " << endl;
+        }
+    }
+}
+
+void Library::addBook()
+{
+    int n;
+    cout << "Enter the number of books you want to add : ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "\nEnter book title for book " << i + 1 << " : ";
+        cin >> booksHave[i].title;
+        cout << "Enter book author for book : ";
+        cin >> booksHave[i].author;
+        cout << "Enter the ISBN for the book : ";
+        cin >> booksHave[i].isbn;
+        booksHave[i].isAvailable = 1;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << "\nThe book with title : " << booksHave[i].title << " added." << endl;
+    }
+}
+void Library::displayMenu()
 {
     cout << "<----------------Chose an option?---------------->" << endl;
     cout << "(1) Add a new book." << endl;
@@ -64,61 +89,15 @@ void entryDisplay()
     cout << "(4) Borrow a book." << endl;
     cout << "(5) Return a book." << endl;
     cout << "(6) Exit the library." << endl;
-    cin >> n;
 }
-
-void addBook(Book &b)
+int main()
 {
-    cout << "Enter the title of book : ";
-    cin >> b.title;
-    cout << "Enter the Author of the book : ";
-    cin >> b.author;
-    cout << "Emter ISBN code : ";
-    cin >> b.isbn;
-}
-void addBookFunc()
-{
-    Book newBook;
-    addBook(newBook);
-    cout << endl
-         << endl
-         << "Your book with title " << newBook.title << " added" << endl
-         << endl;
-    return entryDisplay();
-}
-void booksStored()
-{
+    Library user1;
+    user1.bookSearch();
 
-    cout << endl
-         << "We have following books in our library" << endl;
-    for (int i = 0; i < 3; i++)
-    {
-        cout << "Book " << i + 1 << " : Title - " << bookshave[i].title << endl;
-    }
+    int ch;
+    cout << "\n\nPress any key to continue....";
+    ch = getch();
 
-    delete[] bookshave;
-    return entryDisplay();
-}
-void bookSearch()
-{
-    string title;
-
-    cout << "Enter the title of book : ";
-    cin >> title;
-
-    bool found = false;
-    for (int i = 0; i < 3; i++)
-    {
-        if (bookshave[i].title == title)
-        {
-            cout << "The book with title : " << bookshave[i].title << " is found .";
-        }
-        else
-        {
-            cout << "Book not found ";
-            entryDisplay();
-        }
-    }
-
-    return entryDisplay();
+    return 0;
 }
