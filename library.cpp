@@ -17,6 +17,7 @@ public:
     };
     Book *booksHave = new Book[100];
 
+
     void displayMenu();
     void addBook();
     void displayBooks();
