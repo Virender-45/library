@@ -109,8 +109,7 @@ int main(){
     user1.displayMenu();
     cin >> choice;
     do{
-        switch (choice)
-        {
+        switch (choice){
         case 1:
             user1.addBook();
             break;
