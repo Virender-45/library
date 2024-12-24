@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <conio.h>
 
 using namespace std;
 
@@ -15,7 +14,7 @@ public:
         int isbn;
         bool isAvailable = 1;
     };
-    Book *booksHave = new Book[100];
+    Book* booksHave = new Book[100];
 
     void displayMenu();
     void addBook();
@@ -70,13 +69,13 @@ void Library::bookSearch() // Not working
 }
 void Library::displayBooks()
 {
-    booksHave[0] = {"rana", "saab", 76567, 1};
-    booksHave[1] = {"dhiman", "bhau", 76427, 0};
-    booksHave[2] = {"chandel", "brother", 723, 1};
-    booksHave[3] = {"sahil", "bhai", 35845, 0};
+    booksHave[0] = { "rana", "saab", 76567, 1 };
+    booksHave[1] = { "dhiman", "bhau", 76427, 0 };
+    booksHave[2] = { "chandel", "brother", 723, 1 };
+    booksHave[3] = { "sahil", "bhai", 35845, 0 };
 
     cout << "We have following books in our library:--" << endl
-         << endl;
+        << endl;
 
     for (int i = 0; i < 4; i++)
     {
@@ -147,10 +146,6 @@ int main()
             break;
         }
     } while (choice != 6);
-
-    int ch;
-    cout << "Press any key to continue.....";
-    ch = getch();
 
     return 0;
 }
