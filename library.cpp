@@ -21,8 +21,33 @@ public:
     void addBook();
     void displayBooks();
     void bookSearch();
+    void borrowBook();
 };
+void Library::borrowBook()
+{
+    displayBooks();
+    int choice;
+    cout << "\nWhich one do you want : ";
+    cin >> choice;
 
+    for (int i = 0; i < choice; i++)
+    {
+        if (choice == i + 1)
+        {
+            if (booksHave[i].isAvailable == 1)
+            {
+                cout << "Book is available and issued to you." << endl;
+                cout << "Here is your book......." << endl;
+                exit(0);
+            }
+            else
+            {
+                cout << "Book is unavailable at this time!" << endl;
+                exit(0);
+            }
+        }
+    }
+}
 void Library::bookSearch() // Not working
 {
     string t;
@@ -46,23 +71,18 @@ void Library::bookSearch() // Not working
 void Library::displayBooks()
 {
     booksHave[0] = {"rana", "saab", 76567, 1};
-    booksHave[1] = {"dhiman", "bhau", 76427, 1};
-    booksHave[2] = {"chandel", "brother", 35845, 0};
+    booksHave[1] = {"dhiman", "bhau", 76427, 0};
+    booksHave[2] = {"chandel", "brother", 723, 1};
+    booksHave[3] = {"sahil", "bhai", 35845, 0};
 
     cout << "We have following books in our library:--" << endl
          << endl;
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 4; i++)
     {
-        if (booksHave[i].isAvailable == 1)
-        {
-            cout << "Book " << i + 1 << " : with title " << booksHave[i].title << " is available. " << endl;
-        }
-        else
-        {
-            cout << "Book " << i + 1 << " : with title " << booksHave[i].title << " is not available. " << endl;
-        }
+        cout << "Book " << i + 1 << " : with title '" << booksHave[i].title << "'" << endl;
     }
+
 }
 
 void Library::addBook()
@@ -83,8 +103,9 @@ void Library::addBook()
     }
     for (int i = 0; i < n; i++)
     {
-        cout << "\nThe book with title : " << booksHave[i].title << " added." << endl;
+        cout << "\nThe book with title '" << booksHave[i].title << "' added." << endl;
     }
+    exit(0);
 }
 void Library::displayMenu()
 {
@@ -95,15 +116,15 @@ void Library::displayMenu()
     cout << "(4) Borrow a book." << endl;
     cout << "(5) Return a book." << endl;
     cout << "(6) Exit the library." << endl;
+    cout << "Enter Choice : ";
 }
 int main()
 {
     int choice;
-    
+
     Library user1;
     user1.displayMenu();
-    cout<<"Enetr choice : ";
-    // cin>>choice;
+    cin >> choice;
     do
     {
         switch (choice)
@@ -114,19 +135,22 @@ int main()
         case 2:
             user1.displayBooks();
             break;
+        case 4:
+            user1.borrowBook();
+            break;
         case 6:
-        cout<<"Exiting...";
-        return 0;
+            cout << "Exiting...!";
+            return 0;
 
         default:
-        cout<<"Invaild Input";
+            cout << "Invaild Input";
             break;
         }
     } while (choice != 6);
 
-    // int ch;
-    // cout << "\n\nPress any key to continue....";
-    // ch = getch();
+    int ch;
+    cout << "Press any key to continue.....";
+    ch = getch();
 
     return 0;
 }
