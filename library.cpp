@@ -3,10 +3,10 @@
 
 using namespace std;
 
-class Library{
+class Library {
 
 public:
-    struct Book{
+    struct Book {
         string title;
         string author;
         int isbn;
@@ -20,44 +20,44 @@ public:
     void bookSearch();
     void borrowBook();
 };
-void Library::borrowBook(){
+void Library::borrowBook()
+{
     displayBooks();
     int choice;
-    cout << "\nWhich one do you want : ";
+    cout << "\nWhich book number do you want to borrow: ";
     cin >> choice;
 
-    for (int i = 0; i < choice; i++){
-        if (choice == i + 1){
-            if (booksHave[i].isAvailable == 1){
-                cout << "Book is available and issued to you." << endl;
-                cout << "Here is your book......." << endl;
-                exit(0);
-            }
-            else{
-                cout << "Book is unavailable at this time!" << endl;
-                exit(0);
-            }
+    if (choice >= 1 && choice <= 4){
+        if (booksHave[choice - 1].isAvailable){
+            cout << "Book is available and issued to you." << endl;
+            cout << "Here is your book: " << booksHave[choice - 1].title << endl;
+        }
+        else{
+            cout << "Book is unavailable at this time!" << endl;
         }
     }
+    else{
+        cout << "Invalid book number selected! Exiting..to Main Menu" << endl;
+    }
 }
-void Library::bookSearch(){     // Not working
+void Library::bookSearch() {     // Not working
 
     string t;
     cout << "Enter the title of the book you are looking for : ";
     getline(cin, t);
 
     bool found = false;
-    for (int i = 0; i < 3; i++){
-        if (booksHave[i].title == t){
+    for (int i = 0; i < 3; i++) {
+        if (booksHave[i].title == t) {
             cout << "Your book with name " << booksHave[i].title << " is found .";
             found = true;
         }
     }
-    if (!found){
+    if (!found) {
         cout << "The book with title '" << t << "' not found" << endl;
     }
 }
-void Library::displayBooks(){
+void Library::displayBooks() {
     booksHave[0] = { "rana", "saab", 76567, 1 };
     booksHave[1] = { "dhiman", "bhau", 76427, 0 };
     booksHave[2] = { "chandel", "brother", 723, 1 };
@@ -66,17 +66,19 @@ void Library::displayBooks(){
     cout << "We have following books in our library:--" << endl
         << endl;
 
-    for (int i = 0; i < 4; i++){
-        cout << "Book " << i + 1 << " : with title '" << booksHave[i].title << "'" << endl;
+    for (int i = 0; i < 4; i++) {
+        cout << "Book " << i + 1 << ": '" << booksHave[i].title
+            << "' by " << booksHave[i].author
+            << " (Available: " << (booksHave[i].isAvailable ? "Yes" : "No") << ")" << endl;
     }
 }
 
-void Library::addBook(){
+void Library::addBook() {
     int n;
     cout << "Enter the number of books you want to add : ";
     cin >> n;
 
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++) {
 
         cout << "\nEnter book title for book " << i + 1 << " : ";
         cin >> booksHave[i].title;
@@ -86,12 +88,11 @@ void Library::addBook(){
         cin >> booksHave[i].isbn;
         booksHave[i].isAvailable = 1;
     }
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++) {
         cout << "\nThe book with title '" << booksHave[i].title << "' added." << endl;
     }
-    exit(0);
 }
-void Library::displayMenu(){
+void Library::displayMenu() {
 
     cout << "<----------------Chose an option?---------------->" << endl;
     cout << "(1) Add a new book." << endl;
@@ -102,20 +103,22 @@ void Library::displayMenu(){
     cout << "(6) Exit the library." << endl;
     cout << "Enter Choice : ";
 }
-int main(){
+int main() {
     int choice;
 
     Library user1;
+    do {
     user1.displayMenu();
     cin >> choice;
-    do{
-        switch (choice){
+        switch (choice) {
         case 1:
             user1.addBook();
             break;
         case 2:
             user1.displayBooks();
             break;
+        case 3:
+            user1.bookSearch();
         case 4:
             user1.borrowBook();
             break;
