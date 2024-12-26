@@ -17,43 +17,24 @@ public:
     void displayMenu();
     void addBook();
     void displayBooks();
-    void bookSearch();
     void borrowBook();
-    void returnBook();
+    void bookSearch();           // Not working
+    void returnBook();           // Not working
 };
 void Library::returnBook() {
     cin.ignore();
-    string t;
     cout << "Which book do you want to return:-" << endl;
-    for (int i = 0; i < 4; i++){
-        if (booksHave[i].isAvailable == 0) {
-            cout << "Book wih title " << booksHave[i].title << endl;
-        }
-    }
-    getline(cin, t);
-    cout << "Book with title " << t << " is returned" << endl;
-}
-void Library::borrowBook()
-{
-    displayBooks();
-    int choice;
-    cout << "\nWhich book number do you want to borrow: ";
-    cin >> choice;
+    int i = 0;
 
-    if (choice >= 1 && choice <= 4){
-        if (booksHave[choice - 1].isAvailable){
-            cout << "Book is available and issued to you." << endl;
-            cout << "Here is your book: " << booksHave[choice - 1].title << endl;
-        }
-        else{
-            cout << "Book is unavailable at this time!" << endl;
-        }
+    for (int i = 0; i < 4; i++){
+        cout << "Book with title '" << booksHave[i].title << "' is "
+            << (booksHave[i].isAvailable ? "available to return" : "not available to return")
+            << endl;
     }
-    else{
-        cout << "Invalid book number selected! Exiting..to Main Menu" << endl;
-    }
+    string b;
+    getline(cin, b);
 }
-void Library::bookSearch() {     // Not working
+void Library::bookSearch() {
 
     string t;
     cout << "Enter the title of the book you are looking for : ";
@@ -83,6 +64,26 @@ void Library::displayBooks() {
         cout << "Book " << i + 1 << ": '" << booksHave[i].title
             << "' by " << booksHave[i].author
             << " (Available: " << (booksHave[i].isAvailable ? "Yes" : "No") << ")" << endl;
+    }
+}
+void Library::borrowBook()
+{
+    displayBooks();
+    int choice;
+    cout << "\nWhich book number do you want to borrow: ";
+    cin >> choice;
+
+    if (choice >= 1 && choice <= 4) {
+        if (booksHave[choice - 1].isAvailable) {
+            cout << "Book is available and issued to you." << endl;
+            cout << "Here is your book: " << booksHave[choice - 1].title << endl;
+        }
+        else {
+            cout << "Book is unavailable at this time!" << endl;
+        }
+    }
+    else {
+        cout << "Invalid book number selected! Exiting..to Main Menu" << endl;
     }
 }
 
@@ -121,8 +122,8 @@ int main() {
 
     Library user1;
     do {
-    user1.displayMenu();
-    cin >> choice;
+        user1.displayMenu();
+        cin >> choice;
         switch (choice) {
         case 1:
             user1.addBook();
@@ -132,13 +133,16 @@ int main() {
             break;
         case 3:
             user1.bookSearch();
+            break;
         case 4:
             user1.borrowBook();
+            break;
+        case 5:
+            user1.returnBook();
             break;
         case 6:
             cout << "Exiting...!";
             return 0;
-
         default:
             cout << "Invaild Input";
             break;
