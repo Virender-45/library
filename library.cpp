@@ -19,7 +19,20 @@ public:
     void displayBooks();
     void bookSearch();
     void borrowBook();
+    void returnBook();
 };
+void Library::returnBook() {
+    cin.ignore();
+    string t;
+    cout << "Which book do you want to return:-" << endl;
+    for (int i = 0; i < 4; i++){
+        if (booksHave[i].isAvailable == 0) {
+            cout << "Book wih title " << booksHave[i].title << endl;
+        }
+    }
+    getline(cin, t);
+    cout << "Book with title " << t << " is returned" << endl;
+}
 void Library::borrowBook()
 {
     displayBooks();
