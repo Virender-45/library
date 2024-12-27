@@ -59,16 +59,16 @@ void Library::bookSearch() {
     getline(cin, t);
 
     if(t == "rana"){
-        cout<<"book with title rana is found"<<endl;
+        cout<<"book with title '"<<t<<"'  is found"<<endl;
     }else if(t == "dhiman"){
-        cout<<"book with title dhiman is found"<<endl;
+        cout<<"book with title '"<<t<<"'  is found"<<endl;
     }else if(t == "chandel"){
-        cout<<"book with title rana is found"<<endl;
+        cout<<"book with title '"<<t<<"'  is found"<<endl;
     }else if(t == "sahil"){
-        cout<<"Book with title sahil is found"<<endl;
+        cout<<"Book with title '"<<t<<"'  is found"<<endl;
     }
     else{
-        cout<<"not found"<<endl;
+        cout<<"Book with title '"<<t<<"' is not found"<<endl;
     }
 }
 void Library::displayBooks() {
