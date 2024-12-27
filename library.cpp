@@ -13,7 +13,8 @@ public:
         bool isAvailable = 1;
     };
     Book booksHave[100];
-   
+    int totalBooks;
+   Library(); 
     
     void displayMenu();
     void addBook();
@@ -22,18 +23,19 @@ public:
     void bookSearch();
     void returnBook();
 };
+Library::Library() {
+    totalBooks = 4;
+    booksHave[0] = { "rana", "saab", 76567, 1 };
+    booksHave[1] = { "dhiman", "bhau", 76427, 0 };
+    booksHave[2] = { "chandel", "brother", 723, 1 };
+    booksHave[3] = { "sahil", "bhai", 35845, 0 };
+}
 void Library::returnBook() {
-    
-    booksHave[0] = { "rana", "saab", 76567, 1};
-    booksHave[1] = { "dhiman", "bhau", 76427, 0};
-    booksHave[2] = { "chandel", "brother", 723, 1};
-    booksHave[3] = { "sahil", "bhai", 35845, 0};
-
     cin.ignore();
     cout << "Which book do you want to return:-" << endl;
     int i = 0;
 
-    for (int i = 0; i < 4; i++){
+    for (int i = 0; i < totalBooks; i++){
         cout << "Book with title '" << booksHave[i].title << "' is "
             << (booksHave[i].isAvailable ? "not available to return" : "available to return")
             << endl;
@@ -43,11 +45,6 @@ void Library::returnBook() {
     cout<<"Your book with title '"<<b<<"'is returned successfully."<<endl;
 }
 void Library::bookSearch() {
-    booksHave[0] = { "rana", "saab", 76567, 1};
-    booksHave[1] = { "dhiman", "bhau", 76427, 0};
-    booksHave[2] = { "chandel", "brother", 723, 1};
-    booksHave[3] = { "sahil", "bhai", 35845, 0};
-    
     cin.ignore();
 
     string t;
@@ -55,7 +52,7 @@ void Library::bookSearch() {
     getline(cin, t);
 
     bool found = false;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < totalBooks; i++) {
         if (booksHave[i].title == t) {
             cout << "Your book with name " << booksHave[i].title << " is found .";
             found = true;
@@ -66,15 +63,10 @@ void Library::bookSearch() {
     }
 }
 void Library::displayBooks() {
-    booksHave[0] = { "rana", "saab", 76567, 1};
-    booksHave[1] = { "dhiman", "bhau", 76427, 0};
-    booksHave[2] = { "chandel", "brother", 723, 1};
-    booksHave[3] = { "sahil", "bhai", 35845, 0};
-
     cout << "We have following books in our library:--" << endl
         << endl;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < totalBooks; i++) {
         cout << "Book " << i + 1 << ": '" << booksHave[i].title
             << "' by " << booksHave[i].author
             << " (Available: " << (booksHave[i].isAvailable ? "Yes" : "No") << ")" << endl;
