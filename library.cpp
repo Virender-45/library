@@ -32,17 +32,18 @@ Library::Library() {
 }
 void Library::returnBook() {
     cin.ignore();
-    cout << "Which book do you want to return:-" << endl;
-    int i = 0;
-
-    for (int i = 0; i < totalBooks; i++){
-        cout << "Book with title '" << booksHave[i].title << "' is "
-            << (booksHave[i].isAvailable ? "not available to return" : "available to return")
-            << endl;
+    int r;
+    displayBooks();
+    cout << "Which book do you want to return: ";
+    cin>>r;
+    
+    if(r >= 1 && r <= totalBooks){
+        if(booksHave[r+1].isAvailable == 0){
+        cout<<"Book with title '"<<booksHave[r+1].title<<"' is returned successfully."<<endl;
+    }else{
+        cout<<"Book is already available"<<endl;
     }
-    string b;
-    getline(cin, b);
-    cout<<"Your book with title '"<<b<<"'is returned successfully."<<endl;
+}
 }
 void Library::bookSearch() {
     cin.ignore();
@@ -54,7 +55,7 @@ void Library::bookSearch() {
     bool found = false;
     for (int i = 0; i < totalBooks; i++) {
         if (booksHave[i].title == t) {
-            cout << "Your book with name " << booksHave[i].title << " is found .";
+            cout << "Your book with name " << booksHave[i].title << " is found ."<<endl;
             found = true;
         }
     }
@@ -98,7 +99,7 @@ void Library::addBook() {
     cout << "Enter the number of books you want to add : ";
     cin >> n;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = totalBooks; i < totalBooks + n; i++) {
 
         cout << "\nEnter book title for book " << i + 1 << " : ";
         cin >> booksHave[i].title;
@@ -109,6 +110,7 @@ void Library::addBook() {
         booksHave[i].isAvailable = 1;
         cout<<"Book with title '"<<booksHave[i].title<<"' is added"<<endl;
     }
+    totalBooks += n;
 }
 void Library::displayMenu() {
 
