@@ -12,36 +12,50 @@ public:
         int isbn;
         bool isAvailable = 1;
     };
-    Book* booksHave = new Book[100];
-
+    Book booksHave[100];
+   
+    
     void displayMenu();
     void addBook();
     void displayBooks();
     void borrowBook();
-    void bookSearch();           //  working with worst approach 
-    void returnBook();           // Not working
+    void bookSearch();
+    void returnBook();
 };
 void Library::returnBook() {
+    
+    booksHave[0] = { "rana", "saab", 76567, 1};
+    booksHave[1] = { "dhiman", "bhau", 76427, 0};
+    booksHave[2] = { "chandel", "brother", 723, 1};
+    booksHave[3] = { "sahil", "bhai", 35845, 0};
+
     cin.ignore();
     cout << "Which book do you want to return:-" << endl;
     int i = 0;
 
     for (int i = 0; i < 4; i++){
         cout << "Book with title '" << booksHave[i].title << "' is "
-            << (booksHave[i].isAvailable ? "available to return" : "not available to return")
+            << (booksHave[i].isAvailable ? "not available to return" : "available to return")
             << endl;
     }
     string b;
     getline(cin, b);
+    cout<<"Your book with title '"<<b<<"'is returned successfully."<<endl;
 }
-/*void Library::bookSearch() {
+void Library::bookSearch() {
+    booksHave[0] = { "rana", "saab", 76567, 1};
+    booksHave[1] = { "dhiman", "bhau", 76427, 0};
+    booksHave[2] = { "chandel", "brother", 723, 1};
+    booksHave[3] = { "sahil", "bhai", 35845, 0};
+    
+    cin.ignore();
 
     string t;
     cout << "Enter the title of the book you are looking for : ";
     getline(cin, t);
 
     bool found = false;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         if (booksHave[i].title == t) {
             cout << "Your book with name " << booksHave[i].title << " is found .";
             found = true;
@@ -50,32 +64,12 @@ void Library::returnBook() {
     if (!found) {
         cout << "The book with title '" << t << "' not found" << endl;
     }
-}*/
-void Library::bookSearch() {
-    cin.ignore();
-    
-    string t;
-    cout<<"Enter the title of book which you want to find : ";
-    getline(cin, t);
-
-    if(t == "rana"){
-        cout<<"book with title '"<<t<<"'  is found"<<endl;
-    }else if(t == "dhiman"){
-        cout<<"book with title '"<<t<<"'  is found"<<endl;
-    }else if(t == "chandel"){
-        cout<<"book with title '"<<t<<"'  is found"<<endl;
-    }else if(t == "sahil"){
-        cout<<"Book with title '"<<t<<"'  is found"<<endl;
-    }
-    else{
-        cout<<"Book with title '"<<t<<"' is not found"<<endl;
-    }
 }
 void Library::displayBooks() {
-    booksHave[0] = { "rana", "saab", 76567, 1 };
-    booksHave[1] = { "dhiman", "bhau", 76427, 0 };
-    booksHave[2] = { "chandel", "brother", 723, 1 };
-    booksHave[3] = { "sahil", "bhai", 35845, 0 };
+    booksHave[0] = { "rana", "saab", 76567, 1};
+    booksHave[1] = { "dhiman", "bhau", 76427, 0};
+    booksHave[2] = { "chandel", "brother", 723, 1};
+    booksHave[3] = { "sahil", "bhai", 35845, 0};
 
     cout << "We have following books in our library:--" << endl
         << endl;
@@ -137,7 +131,8 @@ void Library::displayMenu() {
 }
 int main() {
     int choice;
-
+   
+    
     Library user1;
     do {
         user1.displayMenu();
