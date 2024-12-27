@@ -18,7 +18,7 @@ public:
     void addBook();
     void displayBooks();
     void borrowBook();
-    void bookSearch();           //  working with worst method 
+    void bookSearch();           //  working with worst approach 
     void returnBook();           // Not working
 };
 void Library::returnBook() {
