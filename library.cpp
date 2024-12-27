@@ -18,7 +18,7 @@ public:
     void addBook();
     void displayBooks();
     void borrowBook();
-    void bookSearch();           // Not working
+    void bookSearch();           //  working with worst method 
     void returnBook();           // Not working
 };
 void Library::returnBook() {
@@ -34,7 +34,7 @@ void Library::returnBook() {
     string b;
     getline(cin, b);
 }
-void Library::bookSearch() {
+/*void Library::bookSearch() {
 
     string t;
     cout << "Enter the title of the book you are looking for : ";
@@ -49,6 +49,26 @@ void Library::bookSearch() {
     }
     if (!found) {
         cout << "The book with title '" << t << "' not found" << endl;
+    }
+}*/
+void Library::bookSearch() {
+    cin.ignore();
+    
+    string t;
+    cout<<"Enter the title of book which you want to find : ";
+    getline(cin, t);
+
+    if(t == "rana"){
+        cout<<"book with title rana is found"<<endl;
+    }else if(t == "dhiman"){
+        cout<<"book with title dhiman is found"<<endl;
+    }else if(t == "chandel"){
+        cout<<"book with title rana is found"<<endl;
+    }else if(t == "sahil"){
+        cout<<"Book with title sahil is found"<<endl;
+    }
+    else{
+        cout<<"not found"<<endl;
     }
 }
 void Library::displayBooks() {
