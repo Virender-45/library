@@ -101,9 +101,7 @@ void Library::addBook() {
         cout << "Enter the ISBN for the book : ";
         cin >> booksHave[i].isbn;
         booksHave[i].isAvailable = 1;
-    }
-    for (int i = 0; i < n; i++) {
-        cout << "\nThe book with title '" << booksHave[i].title << "' added." << endl;
+        cout<<"Book with title '"<<booksHave[i].title<<"' is added"<<endl;
     }
 }
 void Library::displayMenu() {
