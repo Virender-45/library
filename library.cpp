@@ -4,7 +4,6 @@
 using namespace std;
 
 class Library {
-
 public:
     struct Book {
         string title;
