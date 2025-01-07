@@ -23,11 +23,11 @@ public:
     void returnBook();
 };
 Library::Library() {
-    totalBooks = 4;
     booksHave[0] = { "rana", "saab", 76567, 1 };
     booksHave[1] = { "dhiman", "bhau", 76427, 0 };
     booksHave[2] = { "chandel", "brother", 723, 1 };
     booksHave[3] = { "sahil", "bhai", 35845, 0 };
+    totalBooks = 4;
 }
 void Library::returnBook() {
     cin.ignore();
