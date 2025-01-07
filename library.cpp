@@ -106,7 +106,8 @@ void Library::addBook() {
         cin >> booksHave[i].author;
         cout << "Enter the ISBN for the book : ";
         cin >> booksHave[i].isbn;
-        booksHave[i].isAvailable = 1;
+        booksHave[i].isAvailable = true;
+        cin.ignore();    //Clear input buffer
         cout<<"Book with title '"<<booksHave[i].title<<"' is added"<<endl;
     }
     totalBooks += n;
@@ -148,7 +149,7 @@ int main() {
             break;
         case 6:
             cout << "Exiting...!";
-            return 0;
+            break;
         default:
             cout << "Invaild Input";
             break;
