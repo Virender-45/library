@@ -13,7 +13,7 @@ public:
     };
     Book booksHave[100];
     int totalBooks;
-   Library(); 
+   Library(); //Constructor for initializing pre-defined books
     
     void displayMenu();
     void addBook();
@@ -115,7 +115,7 @@ void Library::addBook() {
 void Library::displayMenu() {
 
     cout << "<----------------Chose an option?---------------->" << endl;
-    cout << "(1) Add a new book." << endl;
+    cout << "(1) Add new book." << endl;
     cout << "(2) Display all books." << endl;
     cout << "(3) Search for a book by title." << endl;
     cout << "(4) Borrow a book." << endl;
