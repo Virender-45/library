@@ -2,9 +2,11 @@
 
 using namespace std;
 
-class Library {
+class Library
+{
 public:
-    struct Book {
+    struct Book
+    {
         string title;
         string author;
         int isbn;
