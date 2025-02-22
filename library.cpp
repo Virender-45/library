@@ -96,6 +96,7 @@ void Library::borrowBook()
 
 void Library::addBook() {
     int n;
+    
     cout << "Enter the number of books you want to add : ";
     cin >> n;
 
